@@ -24,9 +24,12 @@ public class Account implements Serializable {
     private Long id;
 
     private Long customerId;
+
     private Double balance;
+
     @Enumerated
     private City city;
+
     @Enumerated
     private Currency currency;
 

@@ -3,13 +3,10 @@ package com.turkcell.restapibestpractices.dto.request.base;
 
 import com.turkcell.restapibestpractices.model.enums.City;
 import com.turkcell.restapibestpractices.model.enums.Currency;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 import javax.validation.constraints.Min;
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 
@@ -18,6 +15,8 @@ import javax.validation.constraints.NotNull;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@SuperBuilder
+@ToString
 public class BaseAccountRequest {
 
     @NotNull(message = "Customer id must not be null")

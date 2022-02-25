@@ -2,9 +2,10 @@ package com.turkcell.restapibestpractices.controller;
 
 import com.turkcell.restapibestpractices.dto.AccountDto;
 import com.turkcell.restapibestpractices.dto.request.CreateAccountRequest;
-import com.turkcell.restapibestpractices.dto.request.MoneyTransferRequest;
 import com.turkcell.restapibestpractices.dto.request.UpdateAccountRequest;
 import com.turkcell.restapibestpractices.service.AccountService;
+import lombok.AllArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,13 +14,10 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/accounts")
+@AllArgsConstructor
 public class AccountController {
 
     private final AccountService accountService;
-
-    public AccountController(AccountService accountService) {
-        this.accountService = accountService;
-    }
 
     @GetMapping
     public ResponseEntity<List<AccountDto>> getAllAccounts() {
@@ -32,7 +30,7 @@ public class AccountController {
     }
 
     @PostMapping
-    public ResponseEntity<Object> createAccount(
+    public ResponseEntity<AccountDto> createAccount(
             @Valid @RequestBody CreateAccountRequest createAccountRequest) {
         return ResponseEntity.ok(accountService.createAccount(createAccountRequest));
     }
@@ -43,9 +41,9 @@ public class AccountController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteAccount(@PathVariable Long id) {
+    @ResponseStatus(value = HttpStatus.NO_CONTENT)
+    public void deleteAccount(@PathVariable Long id) {
         accountService.deleteAccount(id);
-        return ResponseEntity.ok().build();
     }
 
     @PutMapping("/withdraw/{id}/{amount}")
@@ -58,10 +56,6 @@ public class AccountController {
         return ResponseEntity.ok(accountService.addMoney(id, amount));
     }
 
-    @PutMapping("/transfer")
-    public ResponseEntity<String> transferMoney(@RequestBody MoneyTransferRequest transferRequest) {
-        accountService.transferMoney(transferRequest);
-        return ResponseEntity.ok("İşleminiz başarıyla alınmıştır!");
-    }
+
 
 }

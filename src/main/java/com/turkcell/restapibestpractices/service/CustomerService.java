@@ -2,60 +2,54 @@ package com.turkcell.restapibestpractices.service;
 
 
 import com.turkcell.restapibestpractices.dto.CustomerDto;
-import com.turkcell.restapibestpractices.dto.converter.CustomerDtoConverter;
 import com.turkcell.restapibestpractices.dto.request.CreateCustomerRequest;
 import com.turkcell.restapibestpractices.dto.request.UpdateCustomerRequest;
 import com.turkcell.restapibestpractices.exception.CustomerNotFoundException;
+import com.turkcell.restapibestpractices.mapper.CustomerMapper;
 import com.turkcell.restapibestpractices.model.enums.City;
 import com.turkcell.restapibestpractices.model.Customer;
 import com.turkcell.restapibestpractices.repository.CustomerRepository;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.util.ArrayList;
+
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
+@RequiredArgsConstructor
+@Slf4j
 @Service
 public class CustomerService {
 
     private final CustomerRepository customerRepository;
-    private final CustomerDtoConverter customerDtoConverter;
+   private final CustomerMapper customerMapper;
 
-    public CustomerService(CustomerRepository customerRepository, CustomerDtoConverter customerDtoConverter) {
-        this.customerRepository = customerRepository;
-        this.customerDtoConverter = customerDtoConverter;
-    }
+
 
     public CustomerDto createCustomer(CreateCustomerRequest customerRequest){
-        Customer customer = new Customer();
-        customer.setEmail(customerRequest.getEmail());
-        customer.setName(customerRequest.getName());
-        customer.setBirthDate(customerRequest.getBirthDate());
-        customer.setCity(City.valueOf(customerRequest.getCity().name()));
 
-        customerRepository.save(customer);
+        Customer customer = customerMapper.toCustomerFromCreateCustomerRequest(customerRequest);
 
-        return customerDtoConverter.convert(customer);
+        return customerMapper.toCustomerDto(customerRepository.save(customer));
     }
 
     public List<CustomerDto> getAllCustomers() {
         List<Customer> customerList = customerRepository.findAll();
 
-        List<CustomerDto> customerDtoList = new ArrayList<>();
+       return customerList.stream()
+               .map(customerMapper::toCustomerDto)
+               .collect(Collectors.toList());
 
-        for (Customer customer: customerList) {
-            customerDtoList.add(customerDtoConverter.convert(customer));
-        }
-
-        return customerDtoList;
     }
 
     @Transactional
     public CustomerDto getCustomerDtoById(Long id) {
         Optional<Customer> customerOptional = customerRepository.findById(id);
 
-        return customerOptional.map(customerDtoConverter::convert)
+        return customerOptional.map(customerMapper::toCustomerDto)
                 .orElseThrow(() -> new CustomerNotFoundException("Customer not exist!"));
     }
 
@@ -73,7 +67,7 @@ public class CustomerService {
             customerRepository.save(customer);
         });
 
-        return customerOptional.map(customerDtoConverter::convert)
+        return customerOptional.map(customerMapper::toCustomerDto)
                 .orElseThrow(() -> new CustomerNotFoundException("Customer not found!"));
     }
 

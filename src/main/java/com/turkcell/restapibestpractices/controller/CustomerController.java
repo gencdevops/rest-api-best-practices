@@ -7,6 +7,7 @@ import com.turkcell.restapibestpractices.dto.request.UpdateCustomerRequest;
 import com.turkcell.restapibestpractices.service.CustomerService;
 
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -43,9 +44,9 @@ public class CustomerController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteCustomer(@PathVariable Long id){
+    @ResponseStatus(value = HttpStatus.NO_CONTENT)
+    public void deleteCustomer(@PathVariable Long id){
         customerService.deleteCustomer(id);
-        return ResponseEntity.ok().build();
     }
 
     @PutMapping("/{id}")
