@@ -1,7 +1,7 @@
-package com.turkcell.restapibestpractices.dto;
+package com.turkcell.restapibestpractices.client.dto.response;
 
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+
 import com.turkcell.restapibestpractices.model.enums.Currency;
 import lombok.*;
 

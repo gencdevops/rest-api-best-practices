@@ -1,4 +1,4 @@
-package com.turkcell.restapibestpractices.dto.request.base;
+package com.turkcell.restapibestpractices.client.dto.response.base;
 
 
 import com.turkcell.restapibestpractices.model.enums.City;

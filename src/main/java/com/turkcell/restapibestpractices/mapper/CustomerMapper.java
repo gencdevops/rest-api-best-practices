@@ -1,8 +1,8 @@
 package com.turkcell.restapibestpractices.mapper;
 
 
-import com.turkcell.restapibestpractices.dto.CustomerDto;
-import com.turkcell.restapibestpractices.dto.request.CreateCustomerRequest;
+import com.turkcell.restapibestpractices.client.dto.response.CustomerDto;
+import com.turkcell.restapibestpractices.client.dto.request.CreateCustomerRequest;
 import com.turkcell.restapibestpractices.model.Customer;
 import org.mapstruct.Mapper;
 

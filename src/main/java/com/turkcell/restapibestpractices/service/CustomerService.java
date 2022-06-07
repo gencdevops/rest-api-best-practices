@@ -1,9 +1,9 @@
 package com.turkcell.restapibestpractices.service;
 
 
-import com.turkcell.restapibestpractices.dto.CustomerDto;
-import com.turkcell.restapibestpractices.dto.request.CreateCustomerRequest;
-import com.turkcell.restapibestpractices.dto.request.UpdateCustomerRequest;
+import com.turkcell.restapibestpractices.client.dto.response.CustomerDto;
+import com.turkcell.restapibestpractices.client.dto.request.CreateCustomerRequest;
+import com.turkcell.restapibestpractices.client.dto.request.UpdateCustomerRequest;
 import com.turkcell.restapibestpractices.exception.CustomerNotFoundException;
 import com.turkcell.restapibestpractices.mapper.CustomerMapper;
 import com.turkcell.restapibestpractices.model.enums.City;

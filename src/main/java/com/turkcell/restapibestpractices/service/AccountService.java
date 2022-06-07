@@ -1,9 +1,9 @@
 package com.turkcell.restapibestpractices.service;
 
 
-import com.turkcell.restapibestpractices.dto.AccountDto;
-import com.turkcell.restapibestpractices.dto.request.CreateAccountRequest;
-import com.turkcell.restapibestpractices.dto.request.UpdateAccountRequest;
+import com.turkcell.restapibestpractices.client.dto.response.AccountDto;
+import com.turkcell.restapibestpractices.client.dto.request.CreateAccountRequest;
+import com.turkcell.restapibestpractices.client.dto.request.UpdateAccountRequest;
 import com.turkcell.restapibestpractices.exception.AccountNotFoundException;
 import com.turkcell.restapibestpractices.exception.CustomerNotFoundException;
 import com.turkcell.restapibestpractices.mapper.AccountMapper;
@@ -17,7 +17,6 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 @RequiredArgsConstructor
 @Slf4j

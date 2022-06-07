@@ -1,8 +1,8 @@
 package com.turkcell.restapibestpractices.controller;
 
-import com.turkcell.restapibestpractices.dto.AccountDto;
-import com.turkcell.restapibestpractices.dto.request.CreateAccountRequest;
-import com.turkcell.restapibestpractices.dto.request.UpdateAccountRequest;
+import com.turkcell.restapibestpractices.client.dto.response.AccountDto;
+import com.turkcell.restapibestpractices.client.dto.request.CreateAccountRequest;
+import com.turkcell.restapibestpractices.client.dto.request.UpdateAccountRequest;
 import com.turkcell.restapibestpractices.service.AccountService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;

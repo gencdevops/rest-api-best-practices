@@ -1,4 +1,4 @@
-package com.turkcell.restapibestpractices.dto;
+package com.turkcell.restapibestpractices.client.dto.response;
 
 public enum CityDto {
 

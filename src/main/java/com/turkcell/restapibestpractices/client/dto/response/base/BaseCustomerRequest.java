@@ -1,7 +1,7 @@
-package com.turkcell.restapibestpractices.dto.request.base;
+package com.turkcell.restapibestpractices.client.dto.response.base;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.turkcell.restapibestpractices.dto.CityDto;
+import com.turkcell.restapibestpractices.client.dto.response.CityDto;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 
